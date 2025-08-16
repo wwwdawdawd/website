@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
   <meta charset="UTF-8">
   <title>oxytocin</title>
   <link rel="icon" href="https://i.imgur.com/NEHoUV0.png" type="image/png">
@@ -241,11 +240,12 @@ body {
         <img src="https://i.imgur.com/NEHoUV0.png" alt="avatar" class="avatar">
         <div class="folder">📁 Purchase</div>
         <div class="folder">📁 Discord</div>
+        <div class="folder">📁 Hacks</div>
         <div class="folder">📁 TOS</div>
       </div>
       <div class="main">
         <div class="log">
-          <p>현명한 사람은 면도칼을 사용하지 않고 자신의 손으로 음낭의 털을 뽑아냅니다</p>
+          <p>fuck my incel cuck life, my chin is so recessed to the point where i cant even ropemax, gunmaxing it is.</p>
         </div>
       </div>
     </div>
@@ -274,7 +274,7 @@ folders[0].addEventListener("click", () => {
 });
 
 folders[1].addEventListener("click", () => {
-  window.open("https://discord.gg/pq3NW6ze5h", "_blank");
+  window.open("https://discord.gg/hE9Um5Y6Wm", "_blank");
 });
 
 function fadeOut(el, duration = 500) {
@@ -294,6 +294,67 @@ function fadeIn(el, duration = 500) {
 }
 
 folders[2].addEventListener("click", async () => {
+  let hacksDiv = document.createElement("div");
+  hacksDiv.classList.add("tos-overlay"); 
+  hacksDiv.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 400px;
+    border: 2px solid #f7bed5;
+    background: #faf7f6;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    z-index: 300;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  `;
+  hacksDiv.innerHTML = `
+    <div style="
+      background: #f7bed5;
+      color: #faf7f6;
+      padding: 5px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    ">
+      Hacks.mp4
+      <button id="backHacksBtn" style="
+        background: #faf7f6;
+        color: #f7bed5;
+        border: 1px solid #f7bed5;
+        cursor: pointer;
+        font-weight: bold;
+        padding: 2px 6px;
+      ">X</button>
+    </div>
+    <div style="
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #faf7f6;
+    ">
+      <video width="100%" height="100%" controls autoplay>
+        <source src="https://i.imgur.com/RCrOpPr.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  `;
+  body.appendChild(hacksDiv);
+  hacksDiv.getBoundingClientRect();
+  await fadeIn(hacksDiv);
+
+  document.getElementById("backHacksBtn").addEventListener("click", async () => {
+    await fadeOut(hacksDiv);
+    hacksDiv.remove();
+  });
+});
+
+folders[3].addEventListener("click", async () => {
   let tosDiv = document.createElement("div");
   tosDiv.classList.add("tos-overlay");
   tosDiv.style.cssText = `
