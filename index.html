@@ -2,13 +2,385 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Site</title>
+  <title>oxytocin</title>
   <style>
-    body { font-family: Arial; text-align: center; margin-top: 50px; }
+body {
+  background-color: #fce8f1;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  overflow: hidden;
+}
+.intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #faf7f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+.loader {
+  display: flex;
+  gap: 10px;
+}
+.loader div {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  animation: bounce 1s infinite ease-in-out;
+}
+.loader div:nth-child(1) { animation-delay: 0s; background: #f7bed5; }
+.loader div:nth-child(2) { animation-delay: 0.2s; background: #f7bed5; }
+.loader div:nth-child(3) { animation-delay: 0.4s; background: #f7bed5; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-30px); }
+}
+
+.window {
+  width: 800px;
+  margin-top: -600px;
+  border: 2px solid #f7bed5;
+  background-color: faf7f6;
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.2);
+  transition: margin-top 1s ease;
+}
+.window.show {
+  margin-top: 30px;
+}
+.titlebar {
+  background-color: #faf7f6;
+  padding: 4px;
+  font-weight: bold;
+  color: #f7bed5;
+}
+.toolbar {
+  background-color: #f7bed5;
+  padding: 0px 0px;
+  display: flex;
+  gap: 0;
+  font-size: 14px;
+  color: #faf7f6;
+  position: relative;
+  user-select: none;
+}
+.menu {
+  position: relative;
+  cursor: pointer;
+  width: 62.5px;
+  text-align: center;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.menu span {
+  display: block;
+  padding: 6px 0;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+.menu:hover span {
+  background: #e89ebf;
+  color: white;
+  transform: scale(1.05);
+}
+.menu.active span {
+  background: #e89ebf;
+  color: white;
+}
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #faf7f6;
+  border: 1px solid #f7bed5;
+  min-width: 125px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  z-index: 100;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+.menu.active .dropdown {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.dropdown div {
+  padding: 6px 10px;
+  cursor: pointer;
+  color: #f7bed5;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.dropdown div:hover {
+  background: #f7bed5;
+  color: #faf7f6;
+  transform: scale(1.05);
+}
+.content {
+  display: flex;
+  height: 500px;
+}
+.sidebar {
+  width: 250px;
+  background-color: #faf7f6;
+  border-right: 1px solid #f7bed5;
+  padding: 10px;
+}
+.main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #faf7f6;
+}
+.avatar {
+  width: 100%;
+  border: 2px solid #f7bed5;
+  margin-bottom: 10px;
+}
+.folder {
+  margin: 5px 0;
+  padding: 8px;
+  background: #faf7f6;
+  border: 1px solid #f7bed5;
+  cursor: pointer;
+  color: #f7bed5;
+  text-align: left;
+  transition: all 0.25s ease;
+  font-size: 14px;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.folder:hover {
+  background: #f7bed5;
+  color: #faf7f6;
+  transform: scale(1.03);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+.log {
+  flex-grow: 1;
+  background: #faf7f6;
+  border: 1px solid #f7bed5;
+  padding: 10px;
+  overflow-y: auto;
+  color: #f7bed5;
+  font-size: 14px;
+  font-family: Tahoma, Arial, sans-serif;
+}
   </style>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <p>This site is hosted on Cloudflare Pages!</p>
+  <div class="intro">
+    <div class="loader">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <div class="window">
+    <div class="titlebar">oxytocin</div>
+    <div class="toolbar">
+      <div class="menu">
+        <span>File</span>
+        <div class="dropdown">
+          <div>New</div>
+          <div>Open</div>
+          <div>Save</div>
+          <div>Save As</div>
+        </div>
+      </div>
+      <div class="menu">
+        <span>Edit</span>
+        <div class="dropdown">
+          <div>Undo</div>
+          <div>Cut</div>
+          <div>Copy</div>
+          <div>Paste</div>
+        </div>
+      </div>
+      <div class="menu">
+        <span>View</span>
+        <div class="dropdown">
+          <div>Large Icons</div>
+          <div>Small Icons</div>
+          <div>List</div>
+          <div>Details</div>
+        </div>
+      </div>
+      <div class="menu">
+        <span>Tools</span>
+        <div class="dropdown">
+          <div>Options</div>
+          <div>Settings</div>
+        </div>
+      </div>
+      <div class="menu">
+        <span>Help</span>
+        <div class="dropdown">
+          <div>Get Help</div>
+          <div>About</div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="sidebar">
+        <img src="https://i.imgur.com/NEHoUV0.png" alt="avatar" class="avatar">
+        <div class="folder">📁 Purchase</div>
+        <div class="folder">📁 Discord</div>
+        <div class="folder">📁 TOS</div>
+      </div>
+      <div class="main">
+        <div class="log">
+          <p>현명한 사람은 면도칼을 사용하지 않고 자신의 손으로 음낭의 털을 뽑아냅니다</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+const menus = document.querySelectorAll(".menu");
+const folders = document.querySelectorAll(".folder");
+const windowDiv = document.querySelector(".window");
+const body = document.body;
+
+menus.forEach(menu => {
+  menu.addEventListener("click", e => {
+    e.stopPropagation();
+    menus.forEach(m => { if (m !== menu) m.classList.remove("active"); });
+    menu.classList.toggle("active");
+  });
+});
+
+document.addEventListener("click", () => {
+  menus.forEach(menu => menu.classList.remove("active"));
+});
+
+folders[0].addEventListener("click", () => {
+  window.open("https://oxyt.bgng.io/", "_blank");
+});
+
+folders[1].addEventListener("click", () => {
+  window.open("https://discord.gg/hE9Um5Y6Wm", "_blank");
+});
+
+function fadeOut(el, duration = 500) {
+  return new Promise(resolve => {
+    el.style.transition = `opacity ${duration}ms ease`;
+    el.style.opacity = 0;
+    setTimeout(() => resolve(), duration);
+  });
+}
+
+function fadeIn(el, duration = 500) {
+  return new Promise(resolve => {
+    el.style.transition = `opacity ${duration}ms ease`;
+    el.style.opacity = 1;
+    setTimeout(() => resolve(), duration);
+  });
+}
+
+folders[2].addEventListener("click", async () => {
+  let tosDiv = document.createElement("div");
+  tosDiv.classList.add("tos-overlay");
+  tosDiv.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 400px;
+    border: 2px solid #f7bed5;
+    background: #faf7f6;
+    font-family: Tahoma, Arial, sans-serif;
+    color: #f7bed5;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    z-index: 300;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  `;
+  tosDiv.innerHTML = `
+    <div style="
+      background: #f7bed5;
+      color: #faf7f6;
+      padding: 5px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    ">
+      TOS.txt
+      <button id="backBtn" style="
+        background: #faf7f6;
+        color: #f7bed5;
+        border: 1px solid #f7bed5;
+        cursor: pointer;
+        font-weight: bold;
+        padding: 2px 6px;
+      ">X</button>
+    </div>
+    <div style="
+      flex-grow: 1;
+      padding: 10px;
+      overflow-y: auto;
+      background: #faf7f6;
+      color: #f7bed5;
+      border-top: 1px solid #f7bed5;
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    ">
+By purchasing oxytocin, you agree to follow our Terms of Service. Please read all carefully.
+
+1. Key Removal
+We have the right to remove your license key for any reason we see fit, including but not limited to cracking, reverse engineering, tampering, or modifying the software. Attempting to bypass our systems, share keys, or distribute the product illegally will result in immediate revocation. This measure ensures fairness and security for all legitimate users.
+
+2. Product Discontinuation
+We reserve the right to discontinue the product at any time. If we decide to cease development, you may lose access to updates or features. This does not obligate us to provide compensation for discontinued services, and you agree to accept the risk of discontinuation.
+
+3. Responsibility
+We are not responsible for any bans, account suspensions, or damage to your computer resulting from the use of oxytocin. Use the software at your own discretion. You agree that any issues arising from improper usage or violations of game rules are solely your responsibility.
+
+4. Modification of Terms
+We reserve the right to modify these terms at any time. Changes may include updates to licensing, user obligations, or restrictions. It is your responsibility to stay informed about these terms; continued use of oxytocin constitutes acceptance of any modifications.
+
+5. Additional Rights
+We retain all rights regarding the software, including but not limited to distribution, updates, and enforcement of user agreements. By purchasing, you consent to comply with all current and future terms. Violations may result in limited functionality, key revocation, or other enforcement actions.
+
+Please ensure you understand and agree before purchasing.
+    </div>
+  `;
+  body.appendChild(tosDiv);
+  tosDiv.getBoundingClientRect();
+  await fadeIn(tosDiv);
+  document.getElementById("backBtn").addEventListener("click", async () => {
+    await fadeOut(tosDiv);
+    tosDiv.remove();
+  });
+});
+window.addEventListener("load", () => {
+  const intro = document.querySelector(".intro");
+  const win = document.querySelector(".window");
+  setTimeout(() => {
+    win.classList.add("show");
+    intro.style.opacity = "0";
+    setTimeout(() => intro.style.display = "none", 1200);
+  }, 3000);
+});
+</script>
 </body>
 </html>
