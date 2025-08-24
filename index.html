@@ -240,6 +240,7 @@ body {
         <img src="https://i.imgur.com/NEHoUV0.png" alt="avatar" class="avatar">
         <div class="folder"> Purchase</div>
         <div class="folder"> Discord</div>
+        <div class="folder"> Why Us</div>
         <div class="folder"> Hacks</div>
         <div class="folder"> TOS</div>
       </div>
@@ -292,8 +293,77 @@ function fadeIn(el, duration = 500) {
     setTimeout(() => resolve(), duration);
   });
 }
-
 folders[2].addEventListener("click", async () => {
+  let whyDiv = document.createElement("div");
+  whyDiv.classList.add("why-overlay");
+  whyDiv.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 400px;
+    border: 2px solid #f7bed5;
+    background: #faf7f6;
+    font-family: Tahoma, Arial, sans-serif;
+    color: #f7bed5;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    z-index: 300;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+  `;
+  whyDiv.innerHTML = `
+    <div style="
+      background: #f7bed5;
+      color: #faf7f6;
+      padding: 5px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    ">
+      WhyUs.txt
+      <button id="backWhyBtn" style="
+        background: #faf7f6;
+        color: #f7bed5;
+        border: 1px solid #f7bed5;
+        cursor: pointer;
+        font-weight: bold;
+        padding: 2px 6px;
+      ">X</button>
+    </div>
+    <div style="
+      flex-grow: 1;
+      padding: 10px;
+      overflow-y: auto;
+      background: #faf7f6;
+      color: #f7bed5;
+      border-top: 1px solid #f7bed5;
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    ">
+Oxytocin is the gold standard for closet cheating, offering premium-level quality without the premium price.  
+- Cheapest cheat on the market while still delivering top-tier performance.  
+- Includes a free version so anyone can try before buying.  
+- Regular updates ensure you stay ahead of the competition.  
+- Easy-to-use interface, perfect for both beginners and pros.  
+- Backed by reliable support and a dedicated community.  
+    </div>
+  `;
+  body.appendChild(whyDiv);
+  whyDiv.getBoundingClientRect();
+  await fadeIn(whyDiv);
+
+  document.getElementById("backWhyBtn").addEventListener("click", async () => {
+    await fadeOut(whyDiv);
+    whyDiv.remove();
+  });
+});
+
+folders[3].addEventListener("click", async () => {
   let hacksDiv = document.createElement("div");
   hacksDiv.classList.add("tos-overlay"); 
   hacksDiv.style.cssText = `
@@ -354,7 +424,7 @@ folders[2].addEventListener("click", async () => {
   });
 });
 
-folders[3].addEventListener("click", async () => {
+folders[4].addEventListener("click", async () => {
   let tosDiv = document.createElement("div");
   tosDiv.classList.add("tos-overlay");
   tosDiv.style.cssText = `
